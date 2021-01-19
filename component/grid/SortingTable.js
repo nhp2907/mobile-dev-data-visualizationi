@@ -3,6 +3,9 @@ import {StyleSheet} from 'react-native'
 import {DataTable} from 'react-native-paper';
 
 function SortingTable({}) {
+    const [codeSortDirection, setCodeSortDirection] = useState('descending')
+    const [nameSortDirection, setNameSortDirection] = useState('descending')
+
     const data = [
         {
             "parent": "VN",
@@ -625,10 +628,26 @@ function SortingTable({}) {
     const to = (page + 1) * PAGE_SIZE;
     const from = page * PAGE_SIZE;
 
+
     return (
         <DataTable>
             <DataTable.Header>
-                <DataTable.Title>code</DataTable.Title>
+                <DataTable.Title sortDirection={codeSortDirection}
+                                 onPress={() => {
+                                     setCodeSortDirection(codeSortDirection === "descending" ? "ascending" : "descending");
+                                     setShowData(showData.sort((a, b) => {
+                                         let r = undefined;
+                                         if (a.code < b.code) {
+                                             r = -1;
+                                         } else if (a.code === b.code) {
+                                             r = 0;
+                                         }
+                                         r = 1;
+                                         return r * codeSortDirection === "descending" ? 1 : -1;
+                                     }))
+                                     console.log(showData);
+                                 }}
+                >code</DataTable.Title>
                 <DataTable.Title>Name</DataTable.Title>
                 <DataTable.Title>Epoch time</DataTable.Title>
             </DataTable.Header>
@@ -646,15 +665,16 @@ function SortingTable({}) {
                 page={page}
                 numberOfPages={Math.ceil(totalItems / PAGE_SIZE)}
                 onPageChange={(page) => {
-                   setPage(page);
-                    console.log(page*PAGE_SIZE);
-                   setShowData(data.slice(page * PAGE_SIZE, page*PAGE_SIZE + PAGE_SIZE))
+                    setPage(page);
+                    console.log(page * PAGE_SIZE);
+                    setShowData(data.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE))
                 }}
                 label={`${from + 1}-${to} of ${Math.ceil(data.length)}`}
             />
         </DataTable>
     );
 }
+
 
 const styles = StyleSheet.create({
     container: {}
