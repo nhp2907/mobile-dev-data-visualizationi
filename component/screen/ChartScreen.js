@@ -6,7 +6,7 @@ function ChartScreen(props) {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.container}>
-                <Text style={styles.text}>Chart</Text>
+                <Text>chart</Text>
             </ScrollView>
         </SafeAreaView>
     );

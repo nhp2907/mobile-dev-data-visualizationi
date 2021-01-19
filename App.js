@@ -13,7 +13,7 @@ export default function App() {
       <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen name={'Chart'} component={ChartScreen} />
-          <Tab.Screen name={'Grid'} component={GridScreen} />
+          <Tab.Screen name={'Table'} component={GridScreen} />
         </Tab.Navigator>
       </NavigationContainer>
   );
