@@ -1,11 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ChartScreen from "./component/screen/ChartScreen";
+import GridScreen from "./component/screen/GridScreen";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <ScrollView style={styles.container}>
-    </ScrollView>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name={'Chart'} component={ChartScreen} />
+          <Tab.Screen name={'Grid'} component={GridScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
   );
 }
 
