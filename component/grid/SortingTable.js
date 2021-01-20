@@ -621,7 +621,7 @@ function SortingTable({}) {
         }
     ]
     const totalItems = data.length;
-    const PAGE_SIZE = 15;
+    const PAGE_SIZE = 13;
     const [showData, setShowData] = useState(data.slice(0, PAGE_SIZE - 1))
 
     const [page, setPage] = useState(1)
